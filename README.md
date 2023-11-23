@@ -4,7 +4,7 @@ AI for K8s SRE
 ### Local AI Setup
 This is free, Open Source OpenAI alternative.
 
-## Download Docker & docker-compose
+## Download docker & docker-compose
 ```
 apt install -y docker
 snap install docker
