@@ -1,29 +1,24 @@
 # AI-for-K8S
 AI for K8s SRE
 
-### Local AI Setup
+## Local AI Setup
 This is free, Open Source OpenAI alternative.
 
-## Download docker & docker-compose
+#### Download docker & docker-compose
 ```
 apt install -y docker
 snap install docker
-curl -SL https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-linux-x86_64 -o docker-compose
-chmod +x docker-compose
-mv docker-compose /usr/local/bin/
 ```
 
-## Clone Local AI
+#### Download Models & Image
 ```
-git clone https://github.com/go-skynet/LocalAI
-cd LocalAI
+mkdir ai-model
+wget https://gpt4all.io/models/ggml-gpt4all-j.bin -O ai-models/ggml-gpt4all-j
+docker image pull quay.io/go-skynet/local-ai:latest
 ```
 
-## Download gpt4all-j to models/
-```
-wget https://gpt4all.io/models/ggml-gpt4all-j.bin -O models/ggml-gpt4all-j
-docker-compose up -d --pull always
-```
+#### Run Local AI as a container
+```docker run -d -p 8080:8080 -e REBUILD=false -v $PWD/ai-model:/models -ti quay.io/go-skynet/local-ai:latest --models-path /models --context-size 700 --threads 4```
 
 ## Check API is accessible at localhost:8080
 
@@ -31,35 +26,31 @@ docker-compose up -d --pull always
 curl http://localhost:8080/v1/models
 
 curl http://localhost:8080/v1/completions -H "Content-Type: application/json" -d '{
-     "model": "ggml-gpt4all-j.bin",            
-     "prompt": "How are you Jonny!!",
+     "model": "ggml-gpt4all-j",
+     "messages": [{"role": "user", "content": "How are you Jonny!!"}],
      "temperature": 0.7
    }'
 ```
 
-### Setup K8s Cluster
+## Setup K8s Cluster
 
 
-# Download k8sgpt
+#### Download k8sgpt
 ```
 curl -LO https://github.com/k8sgpt-ai/k8sgpt/releases/download/v0.3.21/k8sgpt_amd64.deb
 sudo dpkg -i k8sgpt_amd64.deb
 ```
 
-# Add LocalAI 
-```k8sgpt auth add -p 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```
+#### Add OpenAI 
+```k8sgpt auth add --backend openai -p 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```
 
-# Add OpenAI 
-```
-#k8sgpt auth add --backend localai --model <model_name> --baseurl http://localhost:8080/v1 --temperature 0.7
-k8sgpt auth add --backend localai --model <model_name> --baseurl http://localhost:8080/v1
-```
+#### Add LocalAI 
+```k8sgpt auth add --backend localai --model ggml-gpt4all-j --baseurl http://localhost:8080/v1``` 
 
-### # If errors comes execute below
+#### Modify default for AI provider
+```vi ~/.config/k8sgpt/k8sgpt.yaml```
 
-```rm -rfv ~/.config/k8sgpt/k8sgpt.yaml```
-
-# Create sample yaml
+### Create sample yaml
 
 ```
 cat << EOF > sample.yaml
@@ -114,11 +105,11 @@ spec:
 EOF
 ```
 
-## Deply yaml & delete PV
+### Deply yaml & delete PV
 
 ```kubectl -f apply sample.yaml; kubectl delete pv task-pv-volume```
 
-## Test
+### Test
 
 ```k8sgpt analyze --explain --backend localai```
 
