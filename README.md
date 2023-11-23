@@ -4,7 +4,7 @@ AI for K8s SRE
 ## Local AI Setup
 This is free, Open Source OpenAI alternative.
 
-#### Download docker & docker-compose
+#### Download docker 
 ```
 apt install -y docker
 snap install docker
@@ -12,13 +12,13 @@ snap install docker
 
 #### Download Models & Image
 ```
-mkdir ai-model
+mkdir ai-models
 wget https://gpt4all.io/models/ggml-gpt4all-j.bin -O ai-models/ggml-gpt4all-j
 docker image pull quay.io/go-skynet/local-ai:latest
 ```
 
 #### Run Local AI as a container
-```docker run -d -p 8080:8080 -e REBUILD=false -v $PWD/ai-model:/models -ti quay.io/go-skynet/local-ai:latest --models-path /models --context-size 700 --threads 4```
+```docker run -d -p 8080:8080 -e REBUILD=false -v $PWD/ai-models:/models -ti quay.io/go-skynet/local-ai:latest --models-path /models --context-size 700 --threads 4```
 
 ## Check API is accessible at localhost:8080
 
@@ -33,7 +33,7 @@ curl http://localhost:8080/v1/completions -H "Content-Type: application/json" -d
 ```
 
 ## Setup K8s Cluster
-
+```curl -s https://raw.githubusercontent.com/cloudcafetech/kubesetup/master/host-setup.sh | KUBEMASTER=<MASTER-IP> bash -s master```
 
 #### Download k8sgpt
 ```
