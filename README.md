@@ -42,7 +42,7 @@ sudo dpkg -i k8sgpt_amd64.deb
 ```
 
 #### Add OpenAI 
-```k8sgpt auth add --backend openai -p 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```
+```k8sgpt auth add --backend openai -p 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```
 
 #### Add LocalAI 
 ```k8sgpt auth add --backend localai --model ggml-gpt4all-j --baseurl http://localhost:8080/v1``` 
