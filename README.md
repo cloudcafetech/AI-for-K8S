@@ -33,7 +33,12 @@ curl http://localhost:8080/v1/completions -H "Content-Type: application/json" -d
 ```
 
 ## Setup K8s Cluster
-```curl -s https://raw.githubusercontent.com/cloudcafetech/kubesetup/master/host-setup.sh | KUBEMASTER=<MASTER-IP> bash -s master```
+```
+wget https://raw.githubusercontent.com/cloudcafetech/kubesetup/master/host-setup.sh
+chmod 755 host-setup.sh
+vi host-setup.sh
+./host-setup.sh master
+```
 
 #### Download k8sgpt
 ```
