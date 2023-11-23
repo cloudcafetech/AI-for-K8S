@@ -1896,14 +1896,7 @@ data:
         regex: __meta_kubernetes_node_label_(.+)
     - job_name: 'ingress-nginx'
       static_configs:
-      - targets: ['ingress-nginx.kube-router.svc.cluster.local:10254']
-    - job_name: cost-model
-      scrape_interval: 1m
-      scrape_timeout: 10s
-      metrics_path: /metrics
-      scheme: http
-      static_configs:
-      - targets: ['cost-model.monitoring.svc.cluster.local:9003']      
+      - targets: ['ingress-nginx.kube-router.svc.cluster.local:10254']   
 ---
 kind: Service
 apiVersion: v1
@@ -1969,7 +1962,7 @@ spec:
             - --storage.tsdb.retention.time=2d
             - --web.enable-lifecycle
             - --storage.tsdb.no-lockfile
-            - --web.external-url=http://prometheus.apps.cloud-cafe.tk
+            - --web.external-url=http://prom.34.125.24.130.nip.io
             - --web.route-prefix=/
           ports:
             - containerPort: 9090
