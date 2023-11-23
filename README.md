@@ -111,6 +111,9 @@ EOF
 
 ### Test
 
-```k8sgpt analyze --explain --backend localai```
+```
+k8sgpt analyze --explain -b localai
+k8sgpt analyze --explain -b openai
+```
 
 
