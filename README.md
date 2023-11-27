@@ -1,6 +1,10 @@
 # AI-for-K8S
 AI for K8s SRE
 
+<p align="center">
+  <img src="https://github.com/cloudcafetech/AI-for-K8S/blob/main/k8sgpt.jpg">
+</p>
+
 ## Local AI Setup
 This is free, Open Source OpenAI alternative.
 
