@@ -2,7 +2,7 @@
 # Kubernetes host setup script using Kubeadm for Debian & Redhat distribution
 
 K8S_VER=1.26.0-00
-if [[ -n $(uname -a | grep -i ubuntu) ]]; then 
+if [[ -n $(uname -a | -iE 'ubuntu|debian') ]]; then 
  OS=Ubuntu
  HIP=`ip -o -4 addr list enp1s0 | awk '{print $4}' | cut -d/ -f1`
 else
