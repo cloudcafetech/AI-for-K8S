@@ -160,7 +160,7 @@ kubectl krew install ns
 
 echo 'export PATH="${PATH}:${HOME}/.krew/bin"' >> /root/.bash_profile
 
-Kubectl get nodes
+kubectl get nodes
 
 # Setup K8SGPT
 if [[ "$OS" == "Ubuntu" ]]; then
