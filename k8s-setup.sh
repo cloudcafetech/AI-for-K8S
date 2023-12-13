@@ -104,6 +104,8 @@ systemctl enable --now kubelet; systemctl start kubelet
 # K8s images pull
 kubeadm config images pull
 
+# Uncomment next line (exit) for Node setup &  use join node command
+#exit
 
 # Setting up Kubernetes Master using Kubeadm
 kubeadm init --pod-network-cidr=10.244.0.0/16 --ignore-preflight-errors=all 
