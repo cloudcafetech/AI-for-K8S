@@ -329,7 +329,7 @@ spec:
       serviceAccountName: grafana    
       containers:
       - name: grafana
-        image: grafana/grafana:latest
+        image: grafana/grafana:8.5.13
         ports:
         - name: grafana
           containerPort: 3000
