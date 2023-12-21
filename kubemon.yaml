@@ -181,6 +181,11 @@ spec:
           emptyDir: {}
 ---
 apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: grafana
+---
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-dashboards
@@ -294,6 +299,7 @@ spec:
       labels:
         app: grafana
     spec:
+      serviceAccountName: grafana    
       containers:
       - name: grafana
         image: grafana/grafana:latest
