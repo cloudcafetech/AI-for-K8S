@@ -350,13 +350,17 @@ spec:
             mountPath: /etc/grafana/provisioning/datasources
             readOnly: false
           - name: config
-            mountPath: /etc/grafana/
+            mountPath: /etc/grafana/grafana.ini
+            subPath: grafana.ini
           - name: dashboards
             mountPath: /var/lib/grafana/dashboards
           - name: dashboardproviders
             mountPath: /etc/grafana/provisioning/dashboards/
           - name: grafana-storage
             mountPath: /var/lib/grafana
+          #- name: grafana-ldap
+          #  mountPath: /etc/grafana/ldap.toml
+          #  subPath: ldap.toml            
       volumes:
         - name: datasources
           configMap:
@@ -373,6 +377,9 @@ spec:
             name: grafana-dashboards
         - name: grafana-storage
           emptyDir: {}
+        #- name: grafana-ldap
+        #  secret:
+        #    secretName: grafana-ldap-toml          
 ---
 apiVersion: v1
 kind: Service
