@@ -220,6 +220,10 @@ metadata:
     app: grafana
 data:
   grafana.ini: |
+    [auth.ldap]
+    ;enabled = false
+    ;config_file = /etc/grafana/ldap.toml
+    ;allow_sign_up = true  
     [analytics]
     check_for_updates = true
     [grafana_net]
