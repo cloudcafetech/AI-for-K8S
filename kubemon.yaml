@@ -221,7 +221,7 @@ metadata:
 data:
   grafana.ini: |
     [auth.ldap]
-    ;enabled = false
+    ;enabled = true
     ;config_file = /etc/grafana/ldap.toml
     ;allow_sign_up = true  
     [analytics]
