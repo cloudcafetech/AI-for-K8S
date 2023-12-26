@@ -339,12 +339,6 @@ spec:
               name: grafana-secrect
               key: admin-password
         resources:
-          limits:
-            memory: "1Gi"
-            cpu: "1000m"
-          requests: 
-            memory: 500M
-            cpu: "500m"
         volumeMounts:
           - name: datasources
             mountPath: /etc/grafana/provisioning/datasources
