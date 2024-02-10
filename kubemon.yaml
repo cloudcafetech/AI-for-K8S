@@ -1905,7 +1905,7 @@ spec:
       # `chown` the Prometheus  `/data` directory so that Prometheus can write to it
       initContainers:
       - name: "init-chown-data"
-        image: debian:9
+        image: docker.io/debian:9
         imagePullPolicy: Always
         command: ["chown", "-R", "65534:65534", "/data"]
         volumeMounts:
